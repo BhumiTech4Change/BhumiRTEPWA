@@ -1,0 +1,9 @@
+:host {
+  @import "src/assets/shared/common";
+
+  form {
+    .signup-button {
+      width: 100%;
+    }
+  }
+}

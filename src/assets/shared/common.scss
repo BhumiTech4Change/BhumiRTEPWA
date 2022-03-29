@@ -1,0 +1,24 @@
+@import "colors";
+
+::ng-deep {
+  .mat-form-field-label {
+    color: gray ;
+  }
+
+  .mat-form-field-underline,
+  .mat-form-field-underline:focus,
+  .mat-form-field-underline:hover {
+    background-color: gray;
+  }
+
+  form {
+    margin: 10% auto;
+    max-width: 400px;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+
