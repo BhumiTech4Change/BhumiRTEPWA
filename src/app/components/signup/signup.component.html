@@ -1,5 +1,10 @@
 <app-navbar [title]="'Signup'"></app-navbar>
 <form ngNoForm [formGroup]="signupGroup">
+
+  <div class="logo-container">
+    <img class="bhumi-logo" src="/assets/images/bhumi_logo.png" alt="Bhumi logo">
+  </div>
+
   <div>
     <mat-form-field appearance="standard">
       <mat-label>Email</mat-label>
@@ -24,21 +29,14 @@
   <div>
     <mat-form-field appearance="standard">
       <mat-label>Password</mat-label>
-      <input matInput [type]="'password'" [formControlName]="'password'" formControlName="password" />
+      <input matInput type="password" formControlName="password" />
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field appearance="standard">
       <mat-label>Verify Password</mat-label>
-      <input matInput [type]="'password'" [formControlName]="'verifyPassword'" formControlName="password" />
-    </mat-form-field>
-  </div>
-
-  <div>
-    <mat-form-field appearance="standard">
-      <mat-label>Password</mat-label>
-      <input matInput [type]="'password'" [formControlName]="'password'" formControlName="password" />
+      <input matInput type="password" formControlName="verifyPassword" />
     </mat-form-field>
   </div>
 

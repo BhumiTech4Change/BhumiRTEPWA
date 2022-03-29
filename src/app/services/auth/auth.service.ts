@@ -8,6 +8,8 @@ export class AuthService {
   constructor() { }
 
   isUserAuthenticated() {
-    return false;
+    return true;
   }
+
+  logout() {}
 }

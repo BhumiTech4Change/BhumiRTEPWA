@@ -1,1 +1,61 @@
-<p>home works!</p>
+<app-navbar [title]="'Data Collection'"></app-navbar>
+<form ngNoForm [formGroup]="dataGroup">
+  <div class="logo-container">
+    <img class="bhumi-logo" src="/assets/images/bhumi_logo.png" alt="Bhumi logo">
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Name of Parent</mat-label>
+      <input matInput formControlName="parentName" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="mobile" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Name of child</mat-label>
+      <input matInput formControlName="childName" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Date of birth of child (dd-mm-yyyy)</mat-label>
+      <input matInput type="date" formControlName="childDob" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Pin Code</mat-label>
+      <input matInput formControlName="pin" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <p class="checkbox-header">Do you have?</p>
+    <div class="checkbox-container">
+      <mat-checkbox color="primary">Income Certificate</mat-checkbox>
+      <mat-checkbox color="primary">Birth Certificate</mat-checkbox>
+      <mat-checkbox color="primary">Community Certificate</mat-checkbox>
+      <mat-checkbox color="primary">Current Address Proof</mat-checkbox>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Comments (Optional)</mat-label>
+      <input matInput type="password" formControlName="comments" />
+    </mat-form-field>
+  </div>
+
+  <button class="submit-button" mat-flat-button color="primary">Submit</button>
+
+</form>

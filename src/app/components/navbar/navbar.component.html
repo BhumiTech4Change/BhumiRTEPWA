@@ -1,6 +1,32 @@
 <mat-toolbar color="primary">
+  <button *ngIf="showBackButton" mat-icon-button (click)="location.back()" aria-label="Go back button">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
   <span>{{ title }}</span>
 
-  <!-- This fills the remaining space of the current row -->
-  <span class="example-fill-remaining-space"></span>
+
+  <span class="fill-space"></span>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
 </mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="router.navigate(['/about'])">
+    <mat-icon>help</mat-icon>
+    <span>About RTE</span>
+  </button>
+  <button mat-menu-item (click)="router.navigate(['/credits'])">
+    <mat-icon>people</mat-icon>
+    <span>Credits</span>
+  </button>
+  <button mat-menu-item (click)="router.navigate(['/feedback'])" *ngIf="authService.isUserAuthenticated()">
+    <mat-icon>note_alt</mat-icon>
+    <span>Give Feedback</span>
+  </button>
+  <button mat-menu-item (click)="authService.logout()" *ngIf="authService.isUserAuthenticated()">
+    <mat-icon>logout</mat-icon>
+    <span>Signout</span>
+  </button>
+</mat-menu>
