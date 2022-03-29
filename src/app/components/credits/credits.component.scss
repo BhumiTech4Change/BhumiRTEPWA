@@ -1,0 +1,14 @@
+:host {
+  @import "src/assets/shared/common";
+
+  section {
+    text-align: center;
+    width: 350px;
+    margin: 50px auto;
+    display: block;
+
+    .volunteer-header {
+      color: $primary;
+    }
+  }
+}

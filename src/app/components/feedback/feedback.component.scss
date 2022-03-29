@@ -1,0 +1,17 @@
+:host {
+  @import "src/assets/shared/common";
+
+  form {
+    width: 100%;
+    text-align: center;
+
+    .feedback-instructions {
+      color: $dark-grey;
+      text-align: center;
+    }
+
+    .submit-button {
+      width: 100%;
+    }
+  }
+}

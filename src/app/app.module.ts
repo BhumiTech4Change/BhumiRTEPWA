@@ -22,6 +22,8 @@ import { CreditsComponent } from './components/credits/credits.component';
 import { RestComponent } from './services/rest/rest/rest.component';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCheckboxModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
