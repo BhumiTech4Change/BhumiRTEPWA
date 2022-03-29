@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -13,7 +20,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { CreditsComponent } from './components/credits/credits.component';
 import { RestComponent } from './services/rest/rest/rest.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +33,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     FeedbackComponent,
     CreditsComponent,
-    RestComponent
+    RestComponent,
+    SplashScreenComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +46,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

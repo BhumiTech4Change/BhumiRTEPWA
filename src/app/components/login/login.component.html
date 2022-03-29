@@ -1,1 +1,29 @@
-<p>login works!</p>
+<app-navbar [title]="'Login'"></app-navbar>
+<form ngNoForm [formGroup]="loginForm">
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required/>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" [formControlName]="'password'" formControlName="password" required/>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <a class="forgot-password-link" [routerLink]="['/forgot-password']">Forgot password?</a>
+
+  <div class="buttons-container">
+    <button mat-flat-button color="primary">Sign in</button>
+
+    <button mat-flat-button color="primary" [routerLink]="['/signup']">Sign up</button>
+  </div>
+
+  <a class="learn-more-link" href="https://rte25.bhumi.ngo" target="_blank" rel="noopener noreferrer">Click here to learn more</a>
+</form>

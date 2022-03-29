@@ -1,0 +1,31 @@
+:host {
+  @import "src/assets/shared/common";
+
+  form {
+    a.forgot-password-link {
+      display: flex;
+      justify-content: flex-end;
+      text-decoration: none;
+      color: $primary;
+
+    }
+
+    .buttons-container {
+      width: 95%;
+      padding: 1%;
+      margin: 8px auto;
+
+      button {
+        width: 47%;
+        margin: 0 5.5px;
+      }
+    }
+
+    a.learn-more-link {
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+      color: $primary;
+    }
+  }
+}
