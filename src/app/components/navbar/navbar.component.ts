@@ -12,7 +12,7 @@ import { AuthService } from "../../services/auth/auth.service";
 export class NavbarComponent {
   @Input() title: any;
 
-  backAllowedPages = ['about', 'feedback', 'forgot-password', 'credits'];
+  backAllowedPages = ['about', 'feedback', 'forgot-password', 'credits', 'signup'];
 
   get showBackButton(): boolean {
     const currentUrl = this.router.url;

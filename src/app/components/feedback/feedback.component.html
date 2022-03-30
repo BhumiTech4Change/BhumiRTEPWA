@@ -5,8 +5,9 @@
 
   <div>
     <mat-form-field appearance="standard">
-      <mat-label>Email</mat-label>
+      <mat-label>Feedback</mat-label>
       <input matInput formControlName="feedback" />
+      <mat-error *ngIf="feedbackGroup.get('feedback')?.invalid">{{ getErrorMessage('feedback') }}</mat-error>
     </mat-form-field>
   </div>
 
