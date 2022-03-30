@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import  {FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {ErrorMessages} from "../../models/error-messages";
+import { CustomValidators } from "../../utils/custom-validators";
 
 @Component({
   selector: 'app-login',
@@ -9,14 +11,15 @@ import  {FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class LoginComponent {
   hide: boolean = true;
   loginForm: FormGroup;
-  get emailErrorMessage(): string {
-    return '';
-  }
 
   constructor(private fb: FormBuilder) {
     this.loginForm = fb.group({
-      email: ['', [ Validators.required, Validators.email] ],
-      password: ['', [ Validators.min(8) ]]
+      email: ['', [ CustomValidators.email(true) ] ],
+      password: ['', [ CustomValidators.password() ]]
     })
+  }
+
+  getErrorMessage(key: string): string {
+    return this.loginForm.get(key)!.errors![key].msg;
   }
 }

@@ -1,5 +1,5 @@
 <app-navbar [title]="'Signup'"></app-navbar>
-<form ngNoForm [formGroup]="signupGroup">
+<form [formGroup]="signupGroup" (ngSubmit)="createAccount()">
 
   <div class="logo-container">
     <img class="bhumi-logo" src="/assets/images/bhumi_logo.png" alt="Bhumi logo">
@@ -9,6 +9,7 @@
     <mat-form-field appearance="standard">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" />
+      <mat-error *ngIf="signupGroup.get('email')?.invalid">{{ getErrorMessage('email') }}</mat-error>
     </mat-form-field>
   </div>
 
@@ -16,6 +17,7 @@
     <mat-form-field appearance="standard">
       <mat-label>Phone</mat-label>
       <input matInput formControlName="mobile" />
+      <mat-error *ngIf="signupGroup.get('mobile')?.invalid">{{ getErrorMessage('mobile') }}</mat-error>
     </mat-form-field>
   </div>
 
@@ -23,6 +25,7 @@
     <mat-form-field appearance="standard">
       <mat-label>Pin Code</mat-label>
       <input matInput formControlName="pin" />
+      <mat-error *ngIf="signupGroup.get('pin')?.invalid">{{ getErrorMessage('pin') }}</mat-error>
     </mat-form-field>
   </div>
 
@@ -30,6 +33,7 @@
     <mat-form-field appearance="standard">
       <mat-label>Password</mat-label>
       <input matInput type="password" formControlName="password" />
+      <mat-error *ngIf="signupGroup.get('password')?.invalid">{{ getErrorMessage('password') }}</mat-error>
     </mat-form-field>
   </div>
 
@@ -37,6 +41,7 @@
     <mat-form-field appearance="standard">
       <mat-label>Verify Password</mat-label>
       <input matInput type="password" formControlName="verifyPassword" />
+      <mat-error *ngIf="signupGroup.get('verifyPassword')?.invalid">{{ getErrorMessage('verifyPassword') }}</mat-error>
     </mat-form-field>
   </div>
 

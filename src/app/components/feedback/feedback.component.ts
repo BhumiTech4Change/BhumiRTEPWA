@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { CustomValidators } from "../../utils/custom-validators";
 
 @Component({
   selector: 'app-feedback',
@@ -11,7 +12,11 @@ export class FeedbackComponent {
 
   constructor(private fb: FormBuilder) {
     this.feedbackGroup = fb.group({
-      feedback: ['', [Validators.required]]
+      feedback: ['', [ CustomValidators.feedback() ]]
     });
+  }
+
+  getErrorMessage(key: string): string {
+    return this.feedbackGroup.get(key)!.errors![key].msg;
   }
 }

@@ -23,7 +23,8 @@ import { RestComponent } from './services/rest/rest/rest.component';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatCheckboxModule } from "@angular/material/checkbox";
-import {MatMenuModule} from "@angular/material/menu";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {MatMenuModule} from "@angular/material/menu";
     ReactiveFormsModule,
     MatToolbarModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
