@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
 import { environment } from "../../../environments/environment";
-import {SNACKBAR_CONFIG} from "../../models/constants";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { SNACKBAR_CONFIG } from "../../models/constants";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class DataService {
 
   constructor(private httpClient: HttpClient,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private router: Router,
+              private authService: AuthService) { }
 
 
   submitData(data: {}, successCallback: Function) {
@@ -20,6 +24,19 @@ export class DataService {
         this.snackBar.open(response.msg, "Dismiss", SNACKBAR_CONFIG);
         if (response.success) {
           successCallback();
+        }
+      },
+      (error: any) => {
+        this.snackBar.open(error.msg, "Dismiss", SNACKBAR_CONFIG);
+      });
+  }
+
+  submitFeedback(feedback: string) {
+    this.httpClient.get(`${environment.backendUrl}/getFeedback/${this.authService.getAuthenticatedUserName()}/${feedback}`).subscribe(
+      (response: any) => {
+        this.snackBar.open(response.msg, "Dismiss", SNACKBAR_CONFIG);
+        if (response.success) {
+          this.router.navigate(['/']);
         }
       },
       (error: any) => {
