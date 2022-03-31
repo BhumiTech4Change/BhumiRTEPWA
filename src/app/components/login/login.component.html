@@ -1,5 +1,5 @@
 <app-navbar [title]="'Login'"></app-navbar>
-<form ngNoForm [formGroup]="loginForm">
+<form ngNoForm [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="logo-container">
     <img class="bhumi-logo" src="/assets/images/bhumi_logo.png" alt="Bhumi logo">
   </div>
