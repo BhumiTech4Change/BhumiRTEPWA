@@ -1,69 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
-import {ErrorMessages} from "../../models/error-messages";
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { CustomValidators } from "../../utils/custom-validators";
+import { AuthService } from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
   signupGroup: FormGroup;
 
-  get mobileErrorMessage(): string {
-    const errors = this.signupGroup.get('mobile')?.errors;
-    if (!errors) return '';
-    if (errors.hasOwnProperty('pattern')) {
-      return ErrorMessages.INVALID_PHONE;
-    } else if (errors.hasOwnProperty('required')) {
-      return ErrorMessages.REQUIRED;
-    }
-    return '';
-  }
-
-  get pinErrorMessage(): string {
-    const errors = this.signupGroup.get('pin')?.errors;
-    if (!errors) return '';
-    if (errors.hasOwnProperty('pattern')) {
-      return ErrorMessages.INVALID_PIN;
-    } else if (errors.hasOwnProperty('required')) {
-      return ErrorMessages.REQUIRED;
-    }
-    return '';
-  }
-
-  get passwordErrorMessage(): string {
-    const errors = this.signupGroup.get('password')?.errors;
-    if (!errors) return '';
-    if (errors.hasOwnProperty('minLength')) {
-      return ErrorMessages.INVALID_PASSWORD;
-    } else if (errors.hasOwnProperty('required')) {
-      return ErrorMessages.REQUIRED;
-    }
-    return '';
-  }
-
-  get verifyPasswordErrorMessage(): string {
-    const errors = this.signupGroup.get('verifyPassword')?.errors;
-    if (!errors) return '';
-    if (errors.hasOwnProperty('pattern')) {
-      return ErrorMessages.INVALID_PHONE;
-    } else if (errors.hasOwnProperty('required')) {
-      return ErrorMessages.REQUIRED;
-    }
-    return '';
-  }
-
   constructor(private fb: FormBuilder,
-              private snackBar: MatSnackBar,
-              private router: Router) {
+              private authService: AuthService) {
 
     this.signupGroup = fb.group({
       email: [ '', [ CustomValidators.email(true )] ],
-      mobile: [ '', [ CustomValidators.phone(true)] ],
+      phone: [ '', [ CustomValidators.phone(true)] ],
       pin: [ '', [ CustomValidators.pin(true)] ],
       password: [ '', [ CustomValidators.password()] ],
       verifyPassword: [ '', []]
@@ -71,13 +24,9 @@ export class SignupComponent implements OnInit {
     this.signupGroup.addValidators(CustomValidators.signupGroupValidator());
   }
 
-  ngOnInit(): void {
-  }
-
   createAccount() {
     if (this.signupGroup.valid) {
-      this.snackBar.open("Account created, please login", "Dismiss", { duration: 3000 });
-      this.router.navigate(['/login']);
+      this.authService.createAccount(this.signupGroup.value);
     }
   }
 

@@ -19,12 +19,12 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { HomeComponent } from './components/home/home.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { CreditsComponent } from './components/credits/credits.component';
-import { RestComponent } from './services/rest/rest/rest.component';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     HomeComponent,
     FeedbackComponent,
     CreditsComponent,
-    RestComponent,
     SplashScreenComponent,
     NavbarComponent
   ],
@@ -49,6 +48,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    HttpClientModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,

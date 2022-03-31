@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -6,7 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   dataGroup: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -19,9 +19,6 @@ export class HomeComponent implements OnInit {
       certificates: ['', []],
       comments: ['', []]
     })
-  }
-
-  ngOnInit(): void {
   }
 
 }

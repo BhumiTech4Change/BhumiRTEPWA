@@ -36,7 +36,7 @@ export class CustomValidators {
 
   static phone(required: boolean): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
-      return this.validate('mobile', control, required, isValidPhoneNumber, ErrorMessages.INVALID_PHONE);
+      return this.validate('phone', control, required, isValidPhoneNumber, ErrorMessages.INVALID_PHONE);
     };
   }
 
