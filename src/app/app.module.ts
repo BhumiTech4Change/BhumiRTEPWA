@@ -8,6 +8,10 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,10 +25,8 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { CreditsComponent } from './components/credits/credits.component';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatMenuModule } from "@angular/material/menu";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
-import {HttpClientModule} from "@angular/common/http";
+import { AuthService } from "./services/auth/auth.service";
+import { AuthInterceptor } from "./interceptors/auth/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -61,7 +63,14 @@ import {HttpClientModule} from "@angular/common/http";
     MatMenuModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

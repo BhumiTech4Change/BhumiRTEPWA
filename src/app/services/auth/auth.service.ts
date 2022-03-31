@@ -12,14 +12,16 @@ import { SNACKBAR_CONFIG } from "../../models/constants";
 export class AuthService {
 
   static TOKEN_KEY = 'BHUMI_JWT_TOKEN';
+  static AUTHENTICATED_USER = 'BHUMI_AUTHENTICATED_USER';
 
   constructor(private route: Router,
               private httpClient: HttpClient,
               private snackBar: MatSnackBar) { }
 
   // TODO: HAVE A COOKIE WITH JWT INSTEAD
-  private static createAuthenticatedSession(jwt: string) {
+  private static createAuthenticatedSession(jwt: string, email: string) {
     localStorage.setItem(AuthService.TOKEN_KEY, jwt);
+    localStorage.setItem(AuthService.AUTHENTICATED_USER, email);
   }
 
   private static hasAuthenticatedSession(): boolean {
@@ -32,9 +34,13 @@ export class AuthService {
 
   login(credentials: any) {
     this.httpClient.post(`${environment.backendUrl}/signin`, credentials).subscribe(
-      (success: any) => {
-        AuthService.createAuthenticatedSession(success.token);
-        this.route.navigate(['/']);
+      (response: any) => {
+        if (response.success) {
+          AuthService.createAuthenticatedSession(response.token, credentials.email);
+          this.route.navigate(['/']);
+        } else {
+          this.snackBar.open(response.msg, "Dismiss", SNACKBAR_CONFIG);
+        }
       },
       (error: any) => {
         this.snackBar.open(error.msg, "Dismiss", SNACKBAR_CONFIG);
@@ -74,5 +80,13 @@ export class AuthService {
 
   isUserAuthenticated() {
     return AuthService.hasAuthenticatedSession();
+  }
+
+  getAuthenticatedUserName(): string {
+    return localStorage.getItem(AuthService.AUTHENTICATED_USER)!;
+  }
+
+  getAuthToken() {
+    return localStorage.getItem(AuthService.TOKEN_KEY);
   }
 }
