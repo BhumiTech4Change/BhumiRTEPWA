@@ -58,6 +58,31 @@ export class CustomValidators {
     };
   }
 
+  static childName(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      return this.validate('childName', control, true);
+    };
+  }
+
+  static dateOfBirth(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      return this.validate('dateOfBirth', control, true);
+    };
+  }
+
+  static parentName(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      return this.validate('parentName', control, true);
+    };
+  }
+
+  // Todo: update backend and have same pin key in all the places
+  static pinCode(required: boolean): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      return this.validate('pinCode', control, required, isValidPinCode, ErrorMessages.INVALID_PIN);
+    };
+  }
+
   static signupGroupValidator(): ValidatorFn {
     return (group: AbstractControl): { [key: string]: any } => {
       const verifyPasswordControl = group.get('verifyPassword')!;

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
+
 import { CustomValidators } from "../../utils/custom-validators";
+import { DataService } from "../../guards/data/data.service";
 
 @Component({
   selector: 'app-feedback',
@@ -10,7 +12,8 @@ import { CustomValidators } from "../../utils/custom-validators";
 export class FeedbackComponent {
   feedbackGroup: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private dataService: DataService) {
     this.feedbackGroup = fb.group({
       feedback: ['', [ CustomValidators.feedback() ]]
     });
@@ -18,5 +21,11 @@ export class FeedbackComponent {
 
   getErrorMessage(key: string): string {
     return this.feedbackGroup.get(key)!.errors![key].msg;
+  }
+
+  onSubmit() {
+    if (this.feedbackGroup.valid) {
+      this.dataService.submitFeedback(this.feedbackGroup.get('feedback')?.value);
+    }
   }
 }

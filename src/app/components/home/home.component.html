@@ -1,5 +1,5 @@
 <app-navbar [title]="'Data Collection'"></app-navbar>
-<form ngNoForm [formGroup]="dataGroup">
+<form ngNoForm [formGroup]="dataGroup" (ngSubmit)="onSubmit()">
   <div class="logo-container">
     <img class="bhumi-logo" src="/assets/images/bhumi_logo.png" alt="Bhumi logo">
   </div>
@@ -8,13 +8,15 @@
     <mat-form-field appearance="standard">
       <mat-label>Name of Parent</mat-label>
       <input matInput formControlName="parentName" />
+      <mat-error *ngIf="dataGroup.get('parentName')?.invalid">{{ getErrorMessage('parentName') }}</mat-error>
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field appearance="standard">
       <mat-label>Phone</mat-label>
-      <input matInput formControlName="mobile" />
+      <input matInput formControlName="phone" />
+      <mat-error *ngIf="dataGroup.get('phone')?.invalid">{{ getErrorMessage('phone') }}</mat-error>
     </mat-form-field>
   </div>
 
@@ -22,37 +24,39 @@
     <mat-form-field appearance="standard">
       <mat-label>Name of child</mat-label>
       <input matInput formControlName="childName" />
+      <mat-error *ngIf="dataGroup.get('childName')?.invalid">{{ getErrorMessage('childName') }}</mat-error>
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field appearance="standard">
       <mat-label>Date of birth of child (dd-mm-yyyy)</mat-label>
-      <input matInput type="date" formControlName="childDob" />
+      <input matInput type="date" formControlName="dateOfBirth" />
+      <mat-error *ngIf="dataGroup.get('dateOfBirth')?.invalid">{{ getErrorMessage('dateOfBirth') }}</mat-error>
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field appearance="standard">
       <mat-label>Pin Code</mat-label>
-      <input matInput formControlName="pin" />
+      <input matInput formControlName="pinCode" />
+      <mat-error *ngIf="dataGroup.get('pinCode')?.invalid">{{ getErrorMessage('pinCode') }}</mat-error>
     </mat-form-field>
   </div>
 
   <div>
     <p class="checkbox-header">Do you have?</p>
     <div class="checkbox-container">
-      <mat-checkbox color="primary">Income Certificate</mat-checkbox>
-      <mat-checkbox color="primary">Birth Certificate</mat-checkbox>
-      <mat-checkbox color="primary">Community Certificate</mat-checkbox>
-      <mat-checkbox color="primary">Current Address Proof</mat-checkbox>
+      <mat-checkbox color="primary" *ngFor="let certificate of certificates" (change)="certificate.checked = $event.checked">
+        {{ certificate.name }}
+      </mat-checkbox>
     </div>
   </div>
 
   <div>
     <mat-form-field appearance="standard">
       <mat-label>Comments (Optional)</mat-label>
-      <input matInput type="password" formControlName="comments" />
+      <input matInput formControlName="comment" />
     </mat-form-field>
   </div>
 
