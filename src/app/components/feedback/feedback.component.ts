@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 
 import { CustomValidators } from "../../utils/custom-validators";
-import { DataService } from "../../guards/data/data.service";
+import { DataService } from "../../services/data/data.service";
 
 @Component({
   selector: 'app-feedback',

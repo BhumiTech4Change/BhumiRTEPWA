@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<div class="spinner-container" *ngIf="loaderService.loading$ | async; else main">
+  <mat-spinner></mat-spinner>
+</div>
+
+<ng-template #main>
+  <router-outlet></router-outlet>
+</ng-template>
