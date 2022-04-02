@@ -3,12 +3,13 @@
 
   section {
     text-align: center;
-    width: 350px;
+    padding: 20px;
     margin: auto;
     display: block;
+    min-width: 320px;
 
     .volunteer-button {
-      width: 100%;
+      width: 320px;
     }
   }
 }
