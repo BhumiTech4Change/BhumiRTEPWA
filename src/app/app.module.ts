@@ -27,6 +27,7 @@ import { SplashScreenComponent } from './components/splash-screen/splash-screen.
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthService } from "./services/auth/auth.service";
 import { AuthInterceptor } from "./interceptors/auth/auth.interceptor";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -41,28 +42,29 @@ import { AuthInterceptor } from "./interceptors/auth/auth.interceptor";
     SplashScreenComponent,
     NavbarComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatCheckboxModule,
-    MatMenuModule,
-    MatSnackBarModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatCheckboxModule,
+        MatMenuModule,
+        MatSnackBarModule,
+        MatProgressSpinnerModule
+    ],
   providers: [
     AuthService,
     {
