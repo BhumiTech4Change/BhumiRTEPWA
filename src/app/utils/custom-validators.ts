@@ -29,7 +29,6 @@ export class CustomValidators {
 
   static email(required: boolean): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
-      console.log(this.validate('email', control, required, isValidEmail, ErrorMessages.INVALID_EMAIL));
       return this.validate('email', control, required, isValidEmail, ErrorMessages.INVALID_EMAIL);
     };
   }
