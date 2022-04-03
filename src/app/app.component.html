@@ -1,7 +1,9 @@
-<div class="spinner-container" *ngIf="loaderService.loading$ | async; else main">
+<div class="spinner-container" *ngIf="loaderService.loading$ | async">
   <mat-spinner></mat-spinner>
 </div>
 
-<ng-template #main>
-  <router-outlet></router-outlet>
-</ng-template>
+<div class="spinner-container" *ngIf="loaderService.showSplash$ | async">
+  <app-splash-screen></app-splash-screen>
+</div>
+
+<router-outlet></router-outlet>
